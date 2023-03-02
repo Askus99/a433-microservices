@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+  item-db:
+    image: mongo:3
+    volumes:
+      - app-db:/data/lib
+  
+  item-app:
+    image: askus/item-app:v1
+    command: sh -c "npm install --production --unsafe-perm && npm run build && npm start"
+    ports: 
+      - 80:8080
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      NODE_ENV: production
+      DB_HOST: item-db
+volumes:
+  app-db:
+    
