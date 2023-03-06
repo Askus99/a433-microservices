@@ -10,11 +10,8 @@ services:
     image: askus/item-app:v1
     ports:
       - 80:8080
-    volumes:
-      - ./:/app
     depends_on:
       - item-db
-    build: .
 
 volumes:
   app-db:
